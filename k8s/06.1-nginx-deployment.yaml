@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-nginx
+  namespace: k8s-basics
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravel-nginx
+  template:
+    metadata:
+      labels:
+        app: laravel-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: atrem2023/app-nginx:amd64
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/ready
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config

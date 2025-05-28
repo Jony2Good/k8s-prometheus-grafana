@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: laravel-service-monitor
+  namespace: k8s-basics
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: laravel-nginx  
+  namespaceSelector:
+    matchNames:
+      - k8s-basics
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
