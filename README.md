@@ -161,6 +161,7 @@ kubectl -n k8s-basics port-forward svc/prometheus-grafana 3000:80
 
 Вводим в браузере url: http://127.0.0.1:3000
 
+login: admin
 
 **Получаем пароль**
 
