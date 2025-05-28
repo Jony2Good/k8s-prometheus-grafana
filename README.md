@@ -12,7 +12,7 @@
    - Latency (response time) с квантилями по 0.5, 0.95, 0.99, max
    - RPS
    - Error Rate - количество 500ых ответов
-     
+
 3. Настроить алертинг в графане на Error Rate и Latency.
 
 #### На выходе должны быть предоставлена
@@ -23,15 +23,20 @@
 ------------
 
 ### Результат
+1. [![Пример Grafana доски для метрик от app](https://github.com/Jony2Good/assets/blob/main/laravel-grafana.png "Пример доски для метрики от Laravel")](https://github.com/Jony2Good/assets/blob/main/laravel-grafana.png "Пример доски для метрики от Laravel")
 
+2. [![Пример Grafana доски для метрик от ingress-nginx](https://github.com/Jony2Good/assets/blob/main/nginx-ingress-grafana.png "Пример Grafana доски для ingress-nginx")](https://github.com/Jony2Good/assets/blob/main/nginx-ingress-grafana.png "Пример Grafana доски для ingress-nginx")
 
+3. [![Пример настройки алертинга](https://github.com/Jony2Good/assets/blob/main/grafana-alerting.png "Пример настройки алертинга")](https://github.com/Jony2Good/assets/blob/main/grafana-alerting.png "Пример настройки алертинга")
+
+4. Grafana доска в формате json [panel][1]
 ------------
 ### Инструкция по запуску приложения
 
 **Клонирум проект в локальный репозиторий**
 
  ```
- git clone https://github.com/Jony2Good/k8s-prometheus.git
+ git clone https://github.com/Jony2Good/k8s-prometheus-grafana.git
 ```
 - в корневой директории найти файл .env.example исправить его на .env
 
@@ -206,10 +211,11 @@ max(rate(nginx_ingress_controller_request_duration_seconds_sum[5m]) / rate(nginx
 sum(rate(nginx_ingress_controller_requests[1m]))
 ```
 
-- Error Rate 
+- Error Rate
 
 ```
 sum(rate(nginx_ingress_controller_requests{status=~"5.."}[5m]))
 ```
 
 ***Базовый url приложения:*** http://arch.homework/otusapp/aemelyanenko
+[1]: https://github.com/Jony2Good/k8s-prometheus-grafana/blob/main/panel.json "Grafana-panel"
