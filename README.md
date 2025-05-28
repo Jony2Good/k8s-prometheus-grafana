@@ -38,7 +38,6 @@
  ```
  git clone https://github.com/Jony2Good/k8s-prometheus-grafana.git
 ```
-- в корневой директории найти файл .env.example исправить его на .env
 
 **Стартуем minikube**
 
