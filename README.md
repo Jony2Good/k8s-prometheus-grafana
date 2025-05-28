@@ -218,4 +218,5 @@ sum(rate(nginx_ingress_controller_requests{status=~"5.."}[5m]))
 ```
 
 ***Базовый url приложения:*** http://arch.homework/otusapp/aemelyanenko
+
 [1]: https://github.com/Jony2Good/k8s-prometheus-grafana/blob/main/panel.json "Grafana-panel"
